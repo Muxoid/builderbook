@@ -31,7 +31,6 @@ class Index extends React.Component {
   }
 }
 
-Index.getInitialProps = async (ctx) => ({ user: ctx.query.user });
 
 Index.propTypes = propTypes;
 Index.defaultProps = defaultProps;

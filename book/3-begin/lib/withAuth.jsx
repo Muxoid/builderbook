@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 
-const globalUser = null;
+let globalUser = null;
 
 export default function withAuth(
   BaseComponent,
@@ -40,20 +40,24 @@ export default function withAuth(
     }
 
     componentDidMount() {
-      // 2. componentDidMount
+      const { user, isFromServer } = this.props;
 
-      /* if (loginRequired && !logoutRequired && !user) {
+      if (isFromServer) {
+        globalUser = user;
+      }
+
+      /*if (loginRequired && !logoutRequired && !user) {
         Router.push('/public/login', '/login');
         return;
       }
-    */
+*/
       if (logoutRequired && user) {
         Router.push('/');
       }
     }
-
     render() {
       // 3. render
+      const { user } = this.props;
 
       if (loginRequired && !logoutRequired && !user) {
         return null;
